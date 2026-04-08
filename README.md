@@ -99,18 +99,6 @@ python scripts/evaluate_cyclegan.py \
   --checkpoint checkpoints/cyclegan_epoch_100.pt
 ```
 
-## Suggested report structure
-
-Follow the HW template in `docs/report_template.md`:
-
-- Introduction
-- Dataset and preprocessing
-- Methodology
-- Experiments
-- Qualitative results
-- Quantitative results (PSNR/SSIM)
-- Conclusion and future work
-
 ## Notes aligned with HW instruction
 
 - Dataset: BraTS 2021 multi-modal MRI.
@@ -130,7 +118,16 @@ python -c "import torch; print(torch.cuda.is_available())"
 ```
 
 ## 7) 1-Click Pipeline Execution
-For a fast, hands-off execution generating a quick `eval.log` report for your HW1, use the enclosed shell script which automatically runs 20 shortened training epochs and follows up with evaluation.
+For automated execution generating a quick `eval.log` report for your HW1, use the enclosed shell scripts. We provide two configurations comparing compute budgets:
+
+### ⚡ Fast Baseline Mode (~1.5 hours)
+Automatically runs 20 shortened training epochs (6 ResNet blocks, BS=8) and follows up with evaluation:
 ```bash
 ./run_pipeline.sh
+```
+
+### 🚀 Full Optimization Mode (~15 hours)
+Automatically runs 100 extended training epochs (9 ResNet blocks, BS=16), evaluates the model, automatically updates metrics in the Markdown report, and generates qualitative comparison images:
+```bash
+./run_full_pipeline.sh
 ```
